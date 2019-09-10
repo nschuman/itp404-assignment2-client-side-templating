@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="assignment2stylesheet.css">
+  <meta charset="utf-8">
+  <title>Assignment 2</title>
+</head>
+<body>
+
+	 <form id="search-form">
+	 	<div class="form-group row" style="padding: 20px">
+				<div class="form-group row">
+				<label for="submit-id" class="col-sm-4 col-form-label text-sm-right"> <button id="search-button" type="submit" class="btn btn-primary">Search SubReddits</button></label>		
+		        </div>
+				<div class="col-sm-9" style="padding-top: 5px">
+					<input type="text" class="col-sm-3 form-control" id="subreddit-id" name="subreddit">
+				</div>		
+		</div>	
+	 </form>
+	 <div id='loading-spinner'></div>
+	 <div id='results'></div>
+	 
+<template id="threads-template">
+    {{#each threads.data.children}}
+    <div>
+        <a href="{{data.url}}" target="_blank">
+        	{{data.title}}
+        </a>
+        <p>
+        	{{data.score}}
+        </p>
+        <p>
+          {{toLocaleString data.subreddit_subscribers}}
+        </p>
+        <p>
+        	{{#if data.num_comments}}
+        	  {{toLocaleString data.num_comments}}
+            {{else}}
+               No comments
+        	{{/if}}
+        </p>
+    </div>    	
+    {{/each}}
+</template>	
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="handlebars-v4.1.2.js"></script>
+<script src="assignment2javascript.js"></script>
+
+</body>
+</html>
+
